@@ -1,0 +1,92 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Integración de Angular con Bulma
+      </h1>
+      <h2 class="subtitle">
+        Listando notas
+      </h2>
+      <a class="button is-primary" (click)="abrirModal()">
+        <strong>Agregar</strong>
+      </a>
+      <a class="button is-primary" (click)="mostrarSpinner()">
+        <strong>Mostrar spinner</strong>
+      </a>
+      <p class="mb-4">
+      </p>
+      <div class="field">
+        <label class="label">Porcentaje</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Ingrese porcentaje" [(ngModel)]="porcentaje">
+        </div>
+      </div>
+      <progress class="progress is-primary" value="{{porcentaje}}" max="{{escala}}">{{porcentaje}}%</progress>
+      <a class="button is-danger" (click)="mas()">
+        <strong>+</strong>
+      </a>
+      <a class="button is-warning" (click)="menos()">
+        <strong>-</strong>
+      </a>
+      <p class="mb-4">
+      </p>
+      <div class="columns is-multiline">
+        <div class="column is-3" *ngFor="let dato of lstNotas;let i = index;">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                {{dato.titulo}}
+              </p>
+              <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                {{dato.contenido}}
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a class="card-footer-item">Eliminar</a>
+            </footer>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal {{modal}}">
+  <div class="modal-background" (click)="cerrarModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Registrar notas</p>
+      <a class="delete" (click)="cerrarModal()"></a>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Título</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Ingrese un título..." [(ngModel)]="titulo">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Contenido</label>
+        <div class="control">
+          <textarea class="textarea is-small" placeholder="Ingrese contenido..." [(ngModel)]="contenido"></textarea>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button is-success" (click)="agregarNota()">Guardar</a>
+      <a class="button" (click)="cerrarModal()">Cancelar</a>
+    </footer>
+  </div>
+</div>
+
+<notifier-container></notifier-container>
+<ngx-spinner type="pacman"></ngx-spinner>
+<!--<router-outlet></router-outlet>-->
